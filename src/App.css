@@ -1,0 +1,29 @@
+.App {
+  font-family: "Source Code Pro", monospace;
+  padding: 10%;
+  text-align: left;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #282c34; /* Change this to the background color you want */
+}
+
+.editor {
+  padding: 20px;
+  background: #1e1e1e; /* Code editor theme background color */
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  color: #9cdcfe; /* Font color for the editor */
+  width: 100vw; /* Set the width to full viewport width */
+  min-height: 50%; /* Set height to auto or a fixed height as needed */
+  box-sizing: border-box; /* Ensure padding doesn't affect overall width */
+  overflow-x: auto; /* Add horizontal scroll if the content overflows */
+}
+
+code {
+  text-align: left;
+  white-space: pre-wrap; /* Ensures that the code respects container bounds */
+}
+
+/* Add more styling here as needed */
