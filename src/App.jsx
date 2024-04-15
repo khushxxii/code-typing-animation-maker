@@ -81,14 +81,14 @@ const App = () => {
 
       {/* INPUT AREA */}
       {inputVisible && (
-        <div className={cx("flex flex-col w-full h-1/3 border-gray-300 overflow-auto")}>
+        <div className={cx("flex flex-col w-full h-1/3 bg-white border-gray-300 overflow-auto")}>
           <textarea
             ref={textareaRef}
             value={input}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             placeholder="Type your code here..."
-            className={cx("flex-1 p-2 text-black resize-none select-none")}
+            className={cx("flex-1 p-2 text-black bg-white resize-none select-none")}
             style={{ minHeight: '2rem' }}
           />
         </div>
