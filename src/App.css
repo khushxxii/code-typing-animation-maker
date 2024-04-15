@@ -1,29 +1,108 @@
 .App {
   font-family: "Source Code Pro", monospace;
-  padding: 10%;
-  text-align: left;
+  text-align: center;
   height: 100vh;
+  width: 100vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #282c34; /* Change this to the background color you want */
+  background: #282c34;
+  overflow: hidden;
+}
+
+.input-area {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.code-input {
+  width: calc(100% - 24px); /* Full width minus padding */
+  height: 150px;
+  margin-bottom: 10px;
+  font-family: "Source Code Pro", monospace;
+  font-size: 1em;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  color: #333;
+}
+
+.refresh-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  background-color: #333;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.refresh-button:hover {
+  background-color: #555;
 }
 
 .editor {
-  padding: 20px;
-  background: #1e1e1e; /* Code editor theme background color */
-  border-radius: 5px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  color: #9cdcfe; /* Font color for the editor */
-  width: 100vw; /* Set the width to full viewport width */
-  min-height: 50%; /* Set height to auto or a fixed height as needed */
-  box-sizing: border-box; /* Ensure padding doesn't affect overall width */
-  overflow-x: auto; /* Add horizontal scroll if the content overflows */
+  width: 100%;
+  background: #1e1e1e;
+  color: #9cdcfe;
+  overflow: auto;
+  box-shadow: 0px 0px 10px 0px rgba(15, 15, 15, 0.4);
 }
 
-code {
+pre.line-numbers {
+  position: relative;
+  padding-left: 3.8em;
+  counter-reset: linenumber;
+}
+
+pre.line-numbers > code {
+  position: relative;
+  white-space: pre-wrap;
+}
+
+.line-numbers .line-numbers-rows {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  font-size: 100%;
+  left: 15px;
+}
+
+.line-numbers-rows > span {
+  pointer-events: none;
+  display: block;
+  counter-increment: linenumber;
+}
+
+.line-numbers-rows > span:before {
+  content: counter(linenumber);
+  color: #5c6370;
+  display: block;
+  padding-right: 10px;
+  text-align: right;
+}
+
+/* Override PrismJS Default Styles */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #d6deeb; /* Light text color for dark backgrounds */
+  background: none; /* No background since it's handled by .editor */
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   text-align: left;
-  white-space: pre-wrap; /* Ensures that the code respects container bounds */
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  tab-size: 4;
+  hyphens: none;
 }
 
-/* Add more styling here as needed */
+/* Add any additional styles or overrides as needed */
