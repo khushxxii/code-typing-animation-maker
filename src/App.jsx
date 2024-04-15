@@ -8,9 +8,24 @@ import cx from 'classnames'; // Importing cx from classnames package
 const App = () => {
   const [code, setCode] = useState('');
   const [input, setInput] = useState('');
+  const [inputVisible, setInputVisible] = useState(true); // State to manage input area visibility
   const index = useRef(0);
   const animationTimeout = useRef(null);
   const textareaRef = useRef(null);
+
+  // Title Cursor Animation
+  const [cursor, setCursor] = useState("_ ");
+  useEffect(() => {
+
+    // space bar in ASCII
+    const cursorInterval = setInterval(() => {
+      setCursor((prevState) => prevState === "\u00a0" ? "_" : "\u00a0");
+    }, 500); // Adjust cursor flashing speed here (in milliseconds)
+
+    return () => {
+      clearInterval(cursorInterval);
+    };
+  }, []);
 
   useEffect(() => {
     Prism.highlightAll();
@@ -51,36 +66,66 @@ const App = () => {
     }
   };
 
+  // Function to toggle input area visibility
+  const toggleInputVisibility = () => {
+    setInputVisible((prevInputVisible) => !prevInputVisible);
+  };
+
   return (
-    <div className={cx("flex flex-col h-screen w-screen")}>
+    <div className={cx("flex flex-col h-screen w-screen bg-white p-0")}>
+
+      {/* TITLE AREA */}
+      <div className={cx("flex justify-left items-center pl-4 h-1/6 text-black text-3xl border-b")} style={{ fontFamily: 'monospace' }}>
+        <b><span className={cx("text-red-500")}>Code Typing</span>{cursor}</b> &nbsp;Simulator for Demos
+      </div>
 
       {/* INPUT AREA */}
-      <div className={cx("flex flex-col w-full h-1/3 p-4 border-b border-gray-300 overflow-auto")}>
-        <textarea
-          ref={textareaRef}
-          value={input}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-          placeholder="Type your code here..."
-          className={cx("flex-1 p-2 mb-4 text-black border-2 border-gray-300 rounded-md resize-none")}
-          style={{ minHeight: '2rem' }}
-        />
-        <div className={cx("flex justify-end")}>
+      {inputVisible && (
+        <div className={cx("flex flex-col w-full h-1/3 p-4 border-gray-300 overflow-auto")}>
+          <textarea
+            ref={textareaRef}
+            value={input}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+            placeholder="Type your code here..."
+            className={cx("flex-1 p-2 text-black rounded-md resize-none select-none")}
+            style={{ minHeight: '2rem' }}
+          />
+        </div>
+      )}
+
+      {/* Buttons */}
+      <div className={cx("flex items-center h-12 bg-white pl-4 pr-4")}>
+        {/* First button on the left */}
+        <div>
+          <button
+            onClick={toggleInputVisibility}
+            className={cx("w-8 h-8 flex justify-center items-center rounded-full bg-gray-200 hover:bg-white text-black hover:bg-gray-600 p-0")}
+          >
+            {inputVisible ? (<span>⏶</span>) : (<span>⏷</span>)}
+          </button>
+        </div>
+        {/* Second button in the center */}
+        {inputVisible && (<div className={cx("flex justify-center flex-grow")}>
           <button
             onClick={animateCode}
             className={cx("px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600")}
           >
             Animate Code
           </button>
-        </div>
+        </div>)}
       </div>
 
       {/* OUTPUT AREA */}
-      <div className={cx("w-full h-2/3 p-4 overflow-auto bg-editor-bg-dark")}>
+      {inputVisible ? (<div className={cx("w-full h-1/2 p-4 overflow-auto bg-dark")}>
         <pre className={cx("language-javascript")}>
           <code>{code}</code>
         </pre>
-      </div>
+      </div>) : (<div className={cx("w-full h-full p-4 overflow-auto bg-dark")}>
+        <pre className={cx("language-javascript")}>
+          <code>{code}</code>
+        </pre>
+      </div>)}
     </div>
   );
 };

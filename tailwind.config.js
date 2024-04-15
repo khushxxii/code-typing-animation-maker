@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        'editor-bg-dark': '#2D2D2D',
+        'dark': '#2D2D2D',
       },
     },
   },
