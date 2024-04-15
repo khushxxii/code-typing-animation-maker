@@ -81,21 +81,21 @@ const App = () => {
 
       {/* INPUT AREA */}
       {inputVisible && (
-        <div className={cx("flex flex-col w-full h-1/3 p-4 border-gray-300 overflow-auto")}>
+        <div className={cx("flex flex-col w-full h-1/3 border-gray-300 overflow-auto")}>
           <textarea
             ref={textareaRef}
             value={input}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             placeholder="Type your code here..."
-            className={cx("flex-1 p-2 text-black rounded-md resize-none select-none")}
+            className={cx("flex-1 p-2 text-black resize-none select-none")}
             style={{ minHeight: '2rem' }}
           />
         </div>
       )}
 
       {/* Buttons */}
-      <div className={cx("flex items-center h-12 bg-white pl-4 pr-4")}>
+      <div className={cx("flex items-center h-12 bg-white p-4 mt-2 mb-2")}>
         {/* First button on the left */}
         <div>
           <button
@@ -109,7 +109,7 @@ const App = () => {
         {inputVisible && (<div className={cx("flex justify-center flex-grow")}>
           <button
             onClick={animateCode}
-            className={cx("px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600")}
+            className={cx("px-4 py-2 justify-center items-center rounded bg-gray-200 hover:bg-white text-black hover:bg-gray-600")}
           >
             Animate Code
           </button>
