@@ -20,9 +20,9 @@ const Controls = () => {
             <div className={cx("flex justify-between flex-grow items-center")}> {/* Changed to justify-between to increase spacing */}
 
                 {/* Animate Code Button */}
-                {inputVisible && (<button onClick={animateCode} className={cx("px-4 py-2 rounded bg-gray-200 hover:bg-white text-black hover:bg-gray-600 mr-4")}>
-                    Animate Code
-                </button>)}
+                <button onClick={animateCode} className={cx("px-4 py-2 rounded bg-gray-200 hover:bg-white text-black hover:bg-gray-600 mr-4")}>
+                    Play &#9658;
+                </button>
 
                 {/* Animation Speed Controller */}
                 <div className={cx("flex items-center")}> {/* Added flex items-center to vertically align the text with the slider */}
